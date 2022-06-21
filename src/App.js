@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import { SignUp,SignIn, Verification } from "./pages";
+import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <div className="App">
+        <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/verification" element={<Verification />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 

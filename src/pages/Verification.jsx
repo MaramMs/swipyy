@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
+import CustomModal from "../components/CustomModal";
 import logo from "../img/8.svg";
 
 const Verification = () => {
+  const [show, setShow] = useState(false);
   return (
     <Div>
       <div className="signup">
@@ -32,9 +34,19 @@ const Verification = () => {
                 </Form.Text>
               </Form.Group>
 
-              <Button variant="primary" type="submit" className="button">
-                <Link to="/">Verify</Link>
+              <Button
+                variant="primary"
+                type="button"
+                className="button"
+                onClick={() => setShow(!show)}
+              >
+                Verify
               </Button>
+              {show &&
+              <div className="container-modal">
+                 <CustomModal />
+              </div>
+              }
               <p className="verify-code">
                 I didn't get the code?<Link to="/signin">Re-send</Link>
               </p>
@@ -124,20 +136,27 @@ const Div = styled.div`
           margin-bottom: 30px;
           font-family: "Regular";
         }
-        .verify-code{
-            color:#163152;
-            font-size:16px;
-
+        .verify-code {
+          color: #163152;
+          font-size: 16px;
         }
-        .verify-code a{
-            text-decoration:none;
-            color:#163152;
-            margin-left:10px;
-            font-weight:bold;
+        .verify-code a {
+          text-decoration: none;
+          color: #163152;
+          margin-left: 10px;
+          font-weight: bold;
         }
       }
     }
+    .container-modal{
+        position: absolute;
+        top: 103%;
+        left: -50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100vw;
+        height: 100vh;
+    }
   }
 `;
-
 export default Verification;

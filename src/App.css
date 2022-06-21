@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap');
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
   font-family:'Montserrat', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+.App{
+  height: 100vh;
+  position: relative;
 }
