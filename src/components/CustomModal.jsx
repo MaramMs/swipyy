@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { BsPatchCheck } from "react-icons/bs";
 
-const CustomModal = () => {
+const CustomModal = ({text,path}) => {
+  const navigate = useNavigate();
   return (
     <ModalContainer>
       <Modal.Dialog>
@@ -15,12 +16,12 @@ const CustomModal = () => {
         </Modal.Header>
 
         <Modal.Body>
-          <p>A verification email had been sent to your email successfully</p>
+          <p>{text}</p>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" className="btn-done">
-            <Link to="/">Done</Link>
+          <Button variant="primary" className="btn-done" >
+            <Link to={path} >Done</Link>
           </Button>
         </Modal.Footer>
       </Modal.Dialog>

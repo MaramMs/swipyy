@@ -48,7 +48,7 @@ const SignIn = () => {
                   type="checkbox"
                   label="Remember me"
                 />
-                <Link to="#">
+                <Link to="/change-password">
                   <span className="forgot">Forgot Password?</span>
                 </Link>
               </Form.Group>
