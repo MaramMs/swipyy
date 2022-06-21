@@ -1,4 +1,5 @@
 import React from "react";
+import { Link,Navigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
@@ -52,7 +53,11 @@ const SignUp = () => {
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="button">
-                Sign Up
+               <Link to='/verification'>
+                 Sign Up
+               </Link>
+              
+
               </Button>
               <span className="line"> Or </span>
               <Button variant="primary" type="submit" className="btn-signup">
