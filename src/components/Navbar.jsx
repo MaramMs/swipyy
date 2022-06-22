@@ -34,7 +34,7 @@ const Div = styled.div`
   .navbar {
     background-color: #8055f0;
     .navbar-container {
-      width: 56%;
+      width: 59%;
       margin: auto;
       .navbar-content {
         display: flex;
@@ -96,6 +96,7 @@ const Div = styled.div`
       position: absolute;
       left: -3%;
       top: -52%;
+      z-index:1;
     }
   }
 `;
