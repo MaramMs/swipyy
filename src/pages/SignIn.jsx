@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
@@ -6,6 +6,17 @@ import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
 
 const SignIn = () => {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   return (
     <Div>
       <div className="signin">
@@ -19,26 +30,36 @@ const SignIn = () => {
         <div className="signin-form">
           <h1 className="title">Sign In</h1>
           <div className="form">
-            <Form>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="label">
                   Email address or User name*
                 </Form.Label>
                 <Form.Control
+                  required
                   type="email"
                   placeholder="Enter email"
                   className="input"
                 />
+                <Form.Control.Feedback type="invalid">
+                  EmaiL Not vaild
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className="label">Enter Password *</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Password"
                   className="input"
                 />
+                <Form.Control.Feedback type="invalid">
+                  {" "}
+                  Invaild Password{" "}
+                </Form.Control.Feedback>
               </Form.Group>
+
               <Form.Group
                 className="mb-3 d-flex justify-content-between"
                 controlId="formBasicCheckbox"
@@ -58,7 +79,7 @@ const SignIn = () => {
               <span className="line"> Or </span>
               <Button variant="primary" type="submit" className="btn-signin">
                 <FcGoogle className="icon" />
-               <span> Sign in with Google</span>
+                <span> Sign in with Google</span>
               </Button>
 
               <Button variant="primary" type="submit" className="btn-signin">
@@ -71,7 +92,7 @@ const SignIn = () => {
               </Button>
 
               <p className="not-member">
-                Not a member ?<Link to="/signin">Sign up</Link>
+                Not a member ?<Link to="/signup">Sign up</Link>
               </p>
             </Form>
           </div>
@@ -85,7 +106,7 @@ const Div = styled.div`
   .signin {
     display: flex;
     .logo {
-      flex:1;
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -93,12 +114,12 @@ const Div = styled.div`
       width: 100%;
       height: 100vh;
       position: relative;
-      overflow:hidden;
+      overflow: hidden;
       .colour {
         width: 95px;
         height: 95px;
         border-radius: 50%;
-        background-image: linear-gradient(#DD81FF,#1238FF);
+        background-image: linear-gradient(#dd81ff, #1238ff);
         position: absolute;
         left: 70%;
         top: 13%;
@@ -114,9 +135,9 @@ const Div = styled.div`
       }
     }
     .signin-form {
-      flex:1;
+      flex: 1;
       width: 100%;
-      max-width:1024px;
+      max-width: 1024px;
       height: 100vh;
       position: relative;
       display: flex;
@@ -132,7 +153,7 @@ const Div = styled.div`
         position: absolute;
         top: 20%;
         left: 20%;
-        width:45%;
+        width: 45%;
         .label {
           color: #163152;
           font-size: 15px;
@@ -197,7 +218,7 @@ const Div = styled.div`
           box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.08);
           border-raduis: 6px;
           font-family: "Montserrat";
-          font-size:15px;
+          font-size: 15px;
           display: flex;
           gap: 50px;
           align-items: center;
@@ -208,7 +229,7 @@ const Div = styled.div`
         }
         img.icon {
           width: 30px;
-          margin-left:30px;
+          margin-left: 30px;
         }
         .not-member {
           color: #2c2f5b;
