@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import CustomModal from "../components/CustomModal";
 import logo from "../img/8.svg";
 
-const Verification = () => {
+const ChangePassword = () => {
   const [show, setShow] = useState(false);
-  const [open, setOpen] = useState(false);
   return (
     <Div>
       <div className="signup">
@@ -18,20 +18,24 @@ const Verification = () => {
           <div className="colour2"></div>
         </div>
         <div className="signup-form">
-          <h1 className="title">Identity Verification</h1>
+          <h1 className="title">Change Password</h1>
           <div className="form">
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label className="label">Verification code*</Form.Label>
+                <Form.Label className="label">New password*</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="* * * *"
+                  type="password"
+                  placeholder="type the new password here.."
                   className="input"
                 />
-                <Form.Text className="text-muted">
-                  *Please enter the verification code that was asked to the
-                  email Ah****66@gmail.com
-                </Form.Text>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="label">Repeat New password*</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="type the new password here.."
+                  className="input"
+                />
               </Form.Group>
 
               <Button
@@ -40,34 +44,13 @@ const Verification = () => {
                 className="button"
                 onClick={() => setShow(!show)}
               >
-                Verify
+                Update Password
               </Button>
-              {show && (
-                <div className="container-modal">
-                  <CustomModal
-                    text="A verification email had been sent to your email successfully"
-                    path="/"
-                  />
-                </div>
-              )}
-
-              <p className="verify-code">
-                I didn't get the code?
-                <Button onClick={() => setOpen(!open)} className="re-send">
-                  Re-send
-                </Button>
-              </p>
-
-              {open && (
-                <div className="container-modal">
-                  <CustomModal
-                    text="A password reset link has been sent to your email"
-                    index
-                    path='/'
-    
-                  />
-                </div>
-              )}
+              {show &&
+              <div className="container-modal">
+                 <CustomModal text='A password has been reset successfully' path='/signin' />
+              </div>
+              }
             </Form>
           </div>
         </div>
@@ -131,9 +114,7 @@ const Div = styled.div`
         }
         .input {
           padding: 12px;
-          text-align: center;
-          letter-spacing: 8px;
-          margin-bottom: 10px;
+         margin-bottom: 10px;
         }
         .input::placeholder {
           padding: 12px;
@@ -166,21 +147,15 @@ const Div = styled.div`
         }
       }
     }
-    .re-send {
-      background-color: transparent;
-      border: none;
-      color: #163152;
-      font-weight: bold;
-    }
-    .container-modal {
-      position: absolute;
-      top: 98.5%;
-      left: -50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.7);
-      width: 100vw;
-      height: 100vh;
+    .container-modal{
+        position: absolute;
+        top: 103%;
+        left: -50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100vw;
+        height: 100vh;
     }
   }
 `;
-export default Verification;
+export default ChangePassword;
