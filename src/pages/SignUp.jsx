@@ -1,11 +1,22 @@
-import React from "react";
-import { Link,Navigate } from "react-router-dom";
+import React,{useState} from "react";
+import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
 
 const SignUp = () => {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   return (
     <Div>
       <div className="signup">
@@ -19,37 +30,54 @@ const SignUp = () => {
         <div className="signup-form">
           <h1 className="title">Sign Up</h1>
           <div className="form">
-            <Form>
+            <Form  noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="label">Email address*</Form.Label>
                 <Form.Control
+                   required
                   type="email"
                   placeholder="Enter email"
                   className="input"
                 />
+                   <Form.Control.Feedback type="invalid">
+                  EmaiL Not vaild
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className="label">Create Password *</Form.Label>
                 <Form.Control
+                required
                   type="password"
                   placeholder="Password"
                   className="input"
                 />
+                    <Form.Control.Feedback type="invalid">
+                  {" "}
+                  Invaild Password{" "}
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className="label">Repeat Password *</Form.Label>
                 <Form.Control
+                required
                   type="password"
                   placeholder="Repeat Password"
                   className="input"
                 />
+                    <Form.Control.Feedback type="invalid">
+                  {" "}
+                  Invaild Password{" "}
+                </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check
+                required
                   className="label"
                   type="checkbox"
                   label="I agree to the Terms of Service and Privacy Policy"
+                  feedback="You must agree before submitting."
+                  feedbackType="invalid"
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="button">
@@ -129,6 +157,7 @@ const Div = styled.div`
         position: absolute;
         top: 20%;
         left: 20%;
+        width:65%
 
         .label {
           color: #163152;
@@ -149,6 +178,11 @@ const Div = styled.div`
           padding: 15px 0px;
           margin-bottom: 30px;
           font-family: "Regular";
+     
+        }
+        .button a{
+          color:#fff;
+          text-decoration:none
         }
         .line {
           color: #bababa;
