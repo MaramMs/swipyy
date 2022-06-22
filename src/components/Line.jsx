@@ -20,12 +20,12 @@ const Div = styled.div`
     width: 242px;
     height: 13px;
     position: absolute;
-    top: 81%;
+    top: 7%;
     border-radius: 5px;
     -webkit-transform: rotateZ(45deg);
     -ms-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
-    left: 6%;
+    left: -15%;
   }
 
   .line2 {
@@ -33,12 +33,12 @@ const Div = styled.div`
     width: 183px;
     height: 11px;
     position: absolute;
-    top: 88%;
+    top: 13%;
     border-radius: 5px;
     -webkit-transform: rotateZ(45deg);
     -ms-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
-    left: 13%;
+    left: -7%;
   }
   .line3 {
     border-radius: 5px;
@@ -46,8 +46,8 @@ const Div = styled.div`
     width: 159px;
     height: 4px;
     position: absolute;
-    top: 88%;
-    left: 10%;
+    top: 16%;
+    left: -11%;
     -webkit-transform: rotateZ(45deg);
     -ms-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
@@ -58,8 +58,8 @@ const Div = styled.div`
     width: 242px;
     height: 11px;
     position: absolute;
-    top: 84%;
-    right: 12%;
+    top: 10%;
+    right: -8%;
     -webkit-transform: rotateZ(45deg);
     -ms-transform: rotateZ(45deg);
     transform: rotateZ(47deg);
@@ -71,8 +71,8 @@ const Div = styled.div`
     width: 242px;
     height: 11px;
     position: absolute;
-    top: 90%;
-    right: 7%;
+    top: 16%;
+    right: -14%;
     -webkit-transform: rotateZ(45deg);
     -ms-transform: rotateZ(45deg);
     transform: rotateZ(47deg);
@@ -83,8 +83,8 @@ const Div = styled.div`
     width: 115px;
     height: 2px;
     position: absolute;
-    top: 95%;
-    right: 12%;
+    top: 28%;
+    right: -8%;
     -webkit-transform: rotateZ(47deg);
     -ms-transform: rotateZ(47deg);
     transform: rotateZ(47deg);
