@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <Div>
       <div className="navbar">
-        <div className="navbar-container">
+        <div className="container">
           <div className="navbar-content">
             <div className="navbar-logo">
               <img src={logo} alt="logo" />
@@ -33,10 +33,8 @@ const Navbar = () => {
 const Div = styled.div`
   .navbar {
     background-color: #8055f0;
-    .navbar-container {
-      width: 59%;
-      margin: auto;
       .navbar-content {
+        margin:auto;
         display: flex;
         justify-content: space-center;
         gap: 100px;
@@ -51,6 +49,7 @@ const Div = styled.div`
           align-items: center;
           gap: 20px;
           .list {
+            width:400px;
             margin: 0;
             display: flex;
             gap: 20px;
@@ -98,6 +97,6 @@ const Div = styled.div`
       top: -52%;
       z-index:1;
     }
-  }
+  
 `;
 export default Navbar;
