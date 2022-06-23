@@ -21,7 +21,7 @@ const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: auto auto 80px auto;
   }
 `;
 export default Video;

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Circle from '../components/Circle'
 import Features from "../components/Features";
 import Video from "../components/Video";
+import Footer from "../components/Footer";
 const Home = () => {
   return (
     <Div>
@@ -25,6 +26,8 @@ const Home = () => {
         <Features />
         <Video />
       </main>
+      <Footer />
+
     </Div>
   );
 };
