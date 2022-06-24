@@ -1,16 +1,17 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import styled from "styled-components";
 import vector1 from "../img/Vector.svg";
 import vector2 from "../img/Vector 2.svg";
 import girl from "../img/girl2.png";
 import girlbottom from "../img/girl.png";
-import facebook from '../img/Facebook.svg';
-import inst from '../img/Instagram.svg';
-import tiktok from '../img/Tiktok.svg';
-import whatsapp from '../img/Whatsapp.svg';
-import youtube from '../img/YoutubeOctDenoiserBeauty_001 copy.svg';
-import snapchat from '../img/Snapchat.svg';
-import twitter from '../img/Twitter.svg';
+import facebook from "../img/Facebook.svg";
+import inst from "../img/Instagram.svg";
+import tiktok from "../img/Tiktok.svg";
+import whatsapp from "../img/Whatsapp.svg";
+import youtube from "../img/YoutubeOctDenoiserBeauty_001 copy.svg";
+import snapchat from "../img/Snapchat.svg";
+import twitter from "../img/Twitter.svg";
 
 const Header = () => {
   return (
@@ -25,11 +26,26 @@ const Header = () => {
               </h1>
               <p>Place all your necessary links in one location.</p>
               <div>
-                <button className="btn-free">start for free</button>
-                <button className="btn-account">Already Have Account</button>
+                <button className="btn-free">
+                  <Link to='/signup'>
+                  start for free
+
+                  </Link>
+                  </button>
+                <button className="btn-account">
+                  <Link to='signin'>
+                  Already Have Account
+                  </Link>
+                  
+                  </button>
               </div>
               <span className="link-me">
-                Already on HeyLink.me? <button> Log In</button>
+                Already on HeyLink.me? <button> 
+                  <Link to='/signin'>
+                  
+                  Log In
+                  </Link>
+                  </button>
               </span>
             </div>
             <div className="header-img">
@@ -51,13 +67,13 @@ const Header = () => {
               <div className="lin1"></div>
               <div className="lin2"></div>
               <div className="social">
-                <img src={facebook} alt="facebook"  className="face"/>
-                <img src={inst} alt="facebook"  className="inst"/>
-                <img src={tiktok} alt="facebook"  className="tik"/>
-                <img src={youtube} alt="facebook"  className="youtube"/>
-                <img src={whatsapp} alt="facebook"  className="whats"/>
-                <img src={snapchat} alt="facebook"  className="snap"/>
-                <img src={twitter} alt="facebook"  className="twitter"/>
+                <img src={facebook} alt="facebook" className="face" />
+                <img src={inst} alt="facebook" className="inst" />
+                <img src={tiktok} alt="facebook" className="tik" />
+                <img src={youtube} alt="facebook" className="youtube" />
+                <img src={whatsapp} alt="facebook" className="whats" />
+                <img src={snapchat} alt="facebook" className="snap" />
+                <img src={twitter} alt="facebook" className="twitter" />
               </div>
             </div>
           </div>
@@ -108,6 +124,10 @@ header{
     border-radius:5px;
     font-size:14px;
     width:190px;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
 }
 .btn-account{
     border:none;  
@@ -118,6 +138,10 @@ header{
     font-size:14px;
     width:209px;
     margin-left:10px;
+    a{
+      text-decoration: none;
+color:#8CC8CC;
+    }
 }
 .link-me{
     color:#fff;
@@ -128,6 +152,10 @@ header{
         background-color:transparent;
         color:#fff;
         font-size:12px;
+        a{
+          text-decoration: none;
+color:#fff;
+        }
     }
 }
 
