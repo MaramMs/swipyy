@@ -114,7 +114,7 @@ const Div = styled.div`
   .circle {
     position: absolute;
     top: -48%;
-    right: -28%;
+    right: -21%;
     background: #D799FF;
     border-radius: 100%;
     height: 225px;

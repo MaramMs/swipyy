@@ -1,17 +1,18 @@
 import React from "react";
-import Header from "../components/Header";
-import Navbar from "../components/Navbar";
-import Cards from "../components/Cards";
+import {
+  Circle,
+  Features,
+  Video,
+  Footer,
+  Header,
+  Navbar,
+  Cards,
+} from "../components";
 import create from "../img/Other 07.svg";
-import styled from "styled-components";
-import Circle from '../components/Circle'
-import Features from "../components/Features";
-import Video from "../components/Video";
-import Footer from "../components/Footer";
 const Home = () => {
   return (
-    <Div>
-      <Navbar />
+      <div className="Home">
+    <Navbar />
       <Header />
       <main>
         <div className="container">
@@ -27,11 +28,9 @@ const Home = () => {
         <Video />
       </main>
       <Footer />
-
-    </Div>
+      </div>
+  
+ 
   );
 };
-const Div = styled.div`
-  
-`;
 export default Home;
