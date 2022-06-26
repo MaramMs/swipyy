@@ -167,5 +167,47 @@ const Div = styled.div`
       }
     }
   }
+
+  @media (max-width: 575.98px) {
+   footer {
+    .footer-content{
+      .info{
+        display:block;
+        margin:atuo;
+        .footer-info {
+          p{
+            width:90%;
+          }
+          &:before{
+            width:60px;
+            left:-5%;
+            top:-25%
+          }
+          &:after{
+            width:44px;
+            left:-5%;
+            top:-13%
+          }
+        }
+      }
+      .footer-img{
+        right:-21%
+      }
+      .circle{
+        left:-15%;
+      }
+    }
+ 
+   }
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    footer .footer-content .info .footer-info p{
+      width:90%;
+    }
+    footer .footer-content .footer-img{
+      right:-10%;
+    }
+  }
 `;
 export default Footer;

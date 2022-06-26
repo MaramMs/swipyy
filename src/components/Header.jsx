@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import vector1 from "../img/Vector.svg";
 import vector2 from "../img/Vector 2.svg";
@@ -27,25 +27,17 @@ const Header = () => {
               <p>Place all your necessary links in one location.</p>
               <div>
                 <button className="btn-free">
-                  <Link to='/signup'>
-                  start for free
-
-                  </Link>
-                  </button>
+                  <Link to="/signup">start for free</Link>
+                </button>
                 <button className="btn-account">
-                  <Link to='signin'>
-                  Already Have Account
-                  </Link>
-                  
-                  </button>
+                  <Link to="signin">Already Have Account</Link>
+                </button>
               </div>
               <span className="link-me">
-                Already on HeyLink.me? <button> 
-                  <Link to='/signin'>
-                  
-                  Log In
-                  </Link>
-                  </button>
+                Already on HeyLink.me?{" "}
+                <button>
+                  <Link to="/signin">Log In</Link>
+                </button>
               </span>
             </div>
             <div className="header-img">
@@ -285,6 +277,45 @@ bottom: 0%;
     position: absolute;
     top: 41%;
     left: 29%
+  }
+}
+
+    }
+
+    @media (max-width: 575.98px) {
+      .header-img{
+        display:none;
+      }   
+      .container .header-content .header-info .btn-account{
+        width:181px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+.container{
+  .header-content{
+    .header-info{
+      h1{
+        font-size:35px;
+      }
+      p{
+        font-size:13px;
+      }
+      .btn-account{
+        margin:10px 0px;
+        width:190px;
+      }
+    }
+    .header-img{
+      margin-right:0px;
+    }
+   }
+   .social{
+    width: 164px;
+    height: 192px;
+    top: -55%;
+    position: absolute;
+    left: 3%
   }
 }
 

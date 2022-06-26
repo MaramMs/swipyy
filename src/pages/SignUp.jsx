@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
@@ -30,16 +30,16 @@ const SignUp = () => {
         <div className="signup-form">
           <h1 className="title">Sign Up</h1>
           <div className="form">
-            <Form  noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="label">Email address*</Form.Label>
                 <Form.Control
-                   required
+                  required
                   type="email"
                   placeholder="Enter email"
                   className="input"
                 />
-                   <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   EmaiL Not vaild
                 </Form.Control.Feedback>
               </Form.Group>
@@ -47,12 +47,12 @@ const SignUp = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className="label">Create Password *</Form.Label>
                 <Form.Control
-                required
+                  required
                   type="password"
                   placeholder="Password"
                   className="input"
                 />
-                    <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {" "}
                   Invaild Password{" "}
                 </Form.Control.Feedback>
@@ -60,19 +60,19 @@ const SignUp = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label className="label">Repeat Password *</Form.Label>
                 <Form.Control
-                required
+                  required
                   type="password"
                   placeholder="Repeat Password"
                   className="input"
                 />
-                    <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {" "}
                   Invaild Password{" "}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check
-                required
+                  required
                   className="label"
                   type="checkbox"
                   label="I agree to the Terms of Service and Privacy Policy"
@@ -81,11 +81,7 @@ const SignUp = () => {
                 />
               </Form.Group>
               <Button variant="primary" type="submit" className="button">
-               <Link to='/verification'>
-                 Sign Up
-               </Link>
-              
-
+                <Link to="/verification">Sign Up</Link>
               </Button>
               <span className="line"> Or </span>
               <Button variant="primary" type="submit" className="btn-signup">
@@ -120,7 +116,7 @@ const Div = styled.div`
       width: 100%;
       height: 100vh;
       position: relative;
-      overflow:hidden;
+      overflow: hidden;
       .colour {
         width: 95px;
         height: 95px;
@@ -157,9 +153,8 @@ const Div = styled.div`
         position: absolute;
         top: 20%;
         left: 20%;
-        width:65%
-
-        .label {
+        width: 60%
+         .label {
           color: #163152;
           font-size: 15px;
         }
@@ -178,11 +173,10 @@ const Div = styled.div`
           padding: 15px 0px;
           margin-bottom: 30px;
           font-family: "Regular";
-     
         }
-        .button a{
-          color:#fff;
-          text-decoration:none
+        .button a {
+          color: #fff;
+          text-decoration: none;
         }
         .line {
           color: #bababa;
@@ -228,6 +222,54 @@ const Div = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 575.98px) {
+    .signup {
+      .logo {
+        display: none;
+      }
+      .signup-form {
+        height: 51vh;
+        .title {
+          top: 7%;
+          left: 6%;
+        }
+        .form {
+          width:80%;
+          left: 5%;
+        }
+      }
+      .container-modal {
+        left:56%
+      }
+    }
+
+
+  
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .signup{
+      .signup-form {
+        .title {
+          top: 5%;
+          left:5%;
+        }
+        .form {
+          width:80%;
+          left:5%;
+          top:11%;
+          .line{
+            margin:0px;
+          }
+        }
+      
+      }
+    
+    }
+  
+
   }
 `;
 

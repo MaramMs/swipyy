@@ -153,7 +153,7 @@ const Div = styled.div`
         position: absolute;
         top: 20%;
         left: 20%;
-        width: 45%;
+        width: 60%;
         .label {
           color: #163152;
           font-size: 15px;
@@ -244,6 +244,45 @@ const Div = styled.div`
         }
       }
     }
+  }
+  @media (max-width: 575.98px) {
+    .signin {
+      .logo {
+        display: none;
+      }
+      .signin-form {
+        height: 51vh;
+        .title {
+          top: 7%;
+          left: 6%;
+        }
+        .form {
+          width:80%;
+          left: 5%;
+        }
+      }
+    }
+  }
+
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .signin{
+      .signin-form {
+        .title {
+          top: 5%;
+          left:5%;
+        }
+        .form {
+          width:80%;
+          left:5%;
+          top:11%;
+          .line{
+            margin:0px;
+          }
+        }
+      }
+    }
+   
   }
 `;
 

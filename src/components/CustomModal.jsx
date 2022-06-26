@@ -70,6 +70,21 @@ const ModalContainer = styled.div`
   text-decoration: none;
     }
   }
+  @media (max-width: 575.98px) {
+   .modal-dialog{
+      left:3%;
+    }
+  .modal-content{
+   width:388px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .modal-dialog{
+    left:19%;
+  }
+
+}
 `;
 
 export default CustomModal;

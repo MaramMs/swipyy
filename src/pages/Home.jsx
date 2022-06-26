@@ -5,14 +5,14 @@ import {
   Video,
   Footer,
   Header,
-  Navbar,
+  CustomsNavbar,
   Cards,
 } from "../components";
 import create from "../img/Other 07.svg";
 const Home = () => {
   return (
       <div className="Home">
-    <Navbar />
+    <CustomsNavbar />
       <Header />
       <main>
         <div className="container">

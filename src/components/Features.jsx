@@ -10,7 +10,7 @@ const Features = () => {
     <Div>
       <div className="featuers">
         <Container>
-          <Row>
+          <Row xs={1} md={2} >
             <Col>
               <img src={works} alt="" />
             </Col>
@@ -25,7 +25,7 @@ const Features = () => {
             </Col>
           </Row>
 
-          <Row>
+          <Row xs={1} md={2} className="meduim">
             <Col>
               <div className="feature-info details">
                 <h2 className="feature-title">Get detailed social analytics</h2>
@@ -38,7 +38,7 @@ const Features = () => {
               <img src={details} alt="" />
             </Col>
           </Row>
-          <Row>
+          <Row xs={1} md={2} >
             <Col>
               <img src={links} alt="" />
             </Col>
@@ -142,6 +142,54 @@ const Div = styled.div`
         margin: 0;
         background: radial-gradient(circle at 100px 100px, #d799ff, #1238ff);
       }
+  }
+  @media  (max-width: 575.98px) {
+    .row.meduim{
+      flex-direction: column-reverse;
+}  
+.featuers .feature-info{
+left:16%;
+margin:0;
+&:before{
+  left:-14%;
+}
+.feature-title{
+  font-size:23px;
+}
+.feature-desc{
+  width:80%;
+}
+    }
+    .circle2 {
+      width:100px;
+      height:100px;
+      left:-15%;
+    }
+    .circle{
+      width:50px;
+      height:50px;
+    }
+   
+  }
+ @media (min-width: 768px) and (max-width: 991.98px) {
+  .featuers .feature-info{
+    &:before{
+      left:-16%
+
+    }
+    .feature-desc{
+      width:100%
+          }
+  }
+    
+     .circle{
+width:50px;
+height:50px;
+    }
+     .circle2{
+width:100px;
+height:100px;
+    }
   }
 `;
 export default Features;
