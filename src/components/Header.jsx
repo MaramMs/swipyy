@@ -286,10 +286,24 @@ bottom: 0%;
       .header-img{
         display:none;
       }   
-      .container .header-content .header-info .btn-account{
-        width:181px;
-      }
+      .container{
+        .header-content{
+          .header-info{
+            h1{
+              font-size:35px;
+            }
+            p{
+              font-size:13px;
+            }
+            .btn-account{
+              margin:10px 0px;
+              width:190px;
+            }
+          
+        }
     }
+  }
+}
 
     @media (min-width: 768px) and (max-width: 991.98px) {
 .container{
