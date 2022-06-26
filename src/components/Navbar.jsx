@@ -129,12 +129,10 @@ const Div = styled.div`
     .navbar-light .navbar-toggler {
       margin-left:35%;
     }
-  }
-  .colour{
-    width:100px;
-    height:100px;
+
+ .navbar .colour{
     top:-6%;
-    left:-17%;
+    left:-24%;
   }
 }
 
