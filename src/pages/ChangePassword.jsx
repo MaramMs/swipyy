@@ -157,5 +157,51 @@ const Div = styled.div`
         height: 100vh;
     }
   }
+
+  @media (max-width: 575.98px) {
+    .signup {
+      .logo {
+        display: none;
+      }
+      .signup-form {
+        height: 51vh;
+        .title {
+          top: 7%;
+          left: 6%;
+        }
+        .form {
+          width:80%;
+          left: 5%;
+        }
+      }
+      .container-modal {
+        left:56%
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .signup{
+      .signup-form {
+        .title {
+          top: 5%;
+          left:5%;
+        }
+        .form {
+          width:80%;
+          left:5%;
+          top:11%;
+          .line{
+            margin:0px;
+          }
+        }
+      }
+       .container-modal {
+        left:-5%;
+        top:97%;
+      }
+    }
+   
+  }
 `;
 export default ChangePassword;

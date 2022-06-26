@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import Line from "./Line";
 
@@ -9,36 +9,45 @@ const Cards = ({ src, title, text }) => {
       <div className="cards">
         <div className="container">
           <h1 className="title">The One Link To Rule Them All</h1>
-          <div className="card-content">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={src} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{text}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={src} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{text}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={src} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{text}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={src} />
-              <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>{text}</Card.Text>
-              </Card.Body>
-            </Card>
-          </div>
+          <Row xs={1} md={2} lg={4} className="g-4 card-content">
+            <Col>
+              <Card >
+                <Card.Img variant="top" src={src} />
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{text}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+
+            <Col>
+              <Card >
+                <Card.Img variant="top" src={src} />
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{text}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card>
+                <Card.Img variant="top" src={src} />
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{text}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>
+              <Card >
+                <Card.Img variant="top" src={src} />
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{text}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
           <div className="circle"></div>
           <Line />
         </div>
@@ -109,18 +118,67 @@ const Div = styled.div`
         color: #bfbfbf;
         font-size: 15px;
       }
-    } 
+    }
   }
   .circle {
     position: absolute;
     top: -48%;
     right: -21%;
-    background: #D799FF;
+    background: #d799ff;
     border-radius: 100%;
     height: 225px;
     width: 225px;
     margin: 0;
     background: radial-gradient(circle at 100px 100px, #d799ff, #1238ff);
+  }
+  @media (max-width: 575.98px) {
+    .title {
+      font-size: 17px;
+
+      &:before {
+        left: 6%;
+      }
+      &:after {
+        right: 2%;
+      }
+    }
+    .line,
+    .line2,
+    .line3,
+    .line4,
+    .line5,
+    .line6 {
+      display: none;
+    }
+    .circle{
+      top: -18%;
+    right: -36%
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .title {
+  
+      &:before {
+        left: 11%;
+      }
+      &:after {
+        right: 9%;
+      }
+    }
+    .line,
+    .line2,
+    .line3,
+    .line4,
+    .line5,
+    .line6 {
+      display: none;
+    }
+    .circle{
+      top:-23%;
+      right:-28%;
+
+    }
   }
 `;
 export default Cards;
