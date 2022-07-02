@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
-import axios from 'axios'
-import {CustomsAlert} from "../components";
+import axios from "axios";
+import { CustomsAlert } from "../components";
 const SignUp = () => {
-  const [user,setUser] = useState({
-    "email":'',
-    "password":'',
-    "password_confirmation":''
-
-  })
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
   const [validated, setValidated] = useState(false);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
-  const [data,setData] =useState({})
-  const [error,setError] = useState([])
-  const [isError , setIsError] = useState(false)
+  const [data, setData] = useState([]);
+  const [error, setError] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -31,47 +30,39 @@ const SignUp = () => {
   };
 
   const handleChange = (e) => {
-    const {name,value} = e.target;
-    setUser(prevUser=> (
-      {
-        ...prevUser,
-        [name]:value
-      }
-    ))
-    
-  }
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
 
-  const handleSubmitClick = async (e) =>{
+  const handleSubmitClick = async (e) => {
     e.preventDefault();
-    setError('')
-    
+    setError("");
+
     if (user.email && user.password && user.password_confirmation) {
       const payload = {
-        "email":user.email,
-        "password":user.password,
-        "password_confirmation":user.password_confirmation
+        email: user.email,
+        password: user.password,
+        password_confirmation: user.password_confirmation,
       };
 
-    try {
-      const response = await axios.post('/api/auth/signup',payload) 
-      if(response.status.code === 200){
-        setData(response.data)
-        setError('')
-        navigate('/verification')
-  
+      try {
+        const response = await axios.post("/api/auth/signup", payload);
+        if (response.data.status.code === "200") {
+          setData(response.data);
+          setError("");
+          navigate("/verification");
+        }
+      } catch (error) {
+        setIsError(true);
+        setError(error.response.data.status.message);
       }
-    } catch (error) {
-      setIsError(true);
-      setError(error.response.data.status.message);
     }
-
-  }
-}
+  };
   return (
     <Div>
-        {
-     data && <Navigate to='/verification' /> 
-    }
       <div className="signup">
         <div className="logo">
           <div className="logo-img">
@@ -91,41 +82,38 @@ const SignUp = () => {
                   type="email"
                   placeholder="Enter email"
                   className="input"
-                  name='email'
+                  name="email"
                   value={user.email}
                   onChange={handleChange}
-                  
                 />
-                 <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   EmaiL Not vaild
-                </Form.Control.Feedback> 
-                
+                </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3"  controlId="validationCustom02">
+              <Form.Group className="mb-3" controlId="validationCustom02">
                 <Form.Label className="label">Create Password *</Form.Label>
                 <Form.Control
                   required
                   type="password"
                   placeholder="Password"
                   className="input"
-                  name='password'
+                  name="password"
                   value={user.password}
                   onChange={handleChange}
                 />
-           <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {" "}
                   Invaild Password{" "}
                 </Form.Control.Feedback>
-          
               </Form.Group>
-              <Form.Group className="mb-3"  controlId="validationCustom03">
+              <Form.Group className="mb-3" controlId="validationCustom03">
                 <Form.Label className="label">Repeat Password *</Form.Label>
                 <Form.Control
                   required
                   type="password"
                   placeholder="Repeat Password"
                   className="input"
-                  name='password_confirmation'
+                  name="password_confirmation"
                   value={user.password_confirmation}
                   onChange={handleChange}
                 />
@@ -146,16 +134,15 @@ const SignUp = () => {
                 />
               </Form.Group>
 
-
-              <Button variant="primary" type="button" className="button" onClick={handleSubmitClick}>
-           
+              <Button
+                variant="primary"
+                type="button"
+                className="button"
+                onClick={handleSubmitClick}
+              >
                 Sign Up
-  
               </Button>
-              {
-                isError && <CustomsAlert  error={error}/>
-          
-              }
+              {isError && <CustomsAlert error={error} />}
               <span className="line"> Or </span>
               <Button variant="primary" type="submit" className="btn-signup">
                 <FcGoogle className="icon" />
@@ -170,7 +157,6 @@ const SignUp = () => {
                 />
                 Sign up with Facebook
               </Button>
-
             </Form>
           </div>
         </div>
@@ -227,8 +213,7 @@ const Div = styled.div`
         position: absolute;
         top: 20%;
         left: 20%;
-        width: 60%
-         .label {
+        width: 60% .label {
           color: #163152;
           font-size: 15px;
         }
@@ -310,40 +295,33 @@ const Div = styled.div`
           left: 6%;
         }
         .form {
-          width:80%;
+          width: 80%;
           left: 5%;
         }
       }
       .container-modal {
-        left:56%
+        left: 56%;
       }
     }
-
-
-  
   }
 
   @media (min-width: 768px) and (max-width: 991.98px) {
-    .signup{
+    .signup {
       .signup-form {
         .title {
           top: 5%;
-          left:5%;
+          left: 5%;
         }
         .form {
-          width:80%;
-          left:5%;
-          top:11%;
-          .line{
-            margin:0px;
+          width: 80%;
+          left: 5%;
+          top: 11%;
+          .line {
+            margin: 0px;
           }
         }
-      
       }
-    
     }
-  
-
   }
 `;
 

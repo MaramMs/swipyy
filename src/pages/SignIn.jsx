@@ -16,7 +16,6 @@ const SignIn = (props) => {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     const { name, value } = e.target;
     setUser((prev) => ({
       ...prev,
@@ -37,7 +36,6 @@ const SignIn = (props) => {
     e.preventDefault();
 
     if (user.login_input && user.password) {
-      console.log(user.login_input);
       const payload = {
         login_input: user.login_input,
         password: user.password,
@@ -45,14 +43,11 @@ const SignIn = (props) => {
 
       try {
         const response = await axios.post("/api/auth/login", payload);
-        console.log(response.data.status);
-        console.log(response.data.status.code);
-        console.log(response.data.status.message);
-
-        if (response.data.status.code === 200) {
+        if (response.data.status.code === '200') {
           setUser((prevUser) => ({
             ...prevUser,
           }));
+          navigate('/')
         }
       } catch (error) {
         console.log(error);
@@ -61,10 +56,6 @@ const SignIn = (props) => {
   };
   return (
     <Div>
-      {
-        user &&<Navigate to="/" replace={true} />
-
-      }
       <div className="signin">
         <div className="logo">
           <div className="logo-img">
