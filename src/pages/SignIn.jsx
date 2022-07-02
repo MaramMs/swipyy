@@ -1,13 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
+import axios from "axios";
 
-const SignIn = () => {
+const SignIn = (props) => {
+  let navigate = useNavigate();
   const [validated, setValidated] = useState(false);
 
+  const [user, setUser] = useState({
+    login_input: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -17,8 +32,39 @@ const SignIn = () => {
 
     setValidated(true);
   };
+
+  const handleSubmitClick = async (e) => {
+    e.preventDefault();
+
+    if (user.login_input && user.password) {
+      console.log(user.login_input);
+      const payload = {
+        login_input: user.login_input,
+        password: user.password,
+      };
+
+      try {
+        const response = await axios.post("/api/auth/login", payload);
+        console.log(response.data.status);
+        console.log(response.data.status.code);
+        console.log(response.data.status.message);
+
+        if (response.data.status.code === 200) {
+          setUser((prevUser) => ({
+            ...prevUser,
+          }));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <Div>
+      {
+        user &&<Navigate to="/" replace={true} />
+
+      }
       <div className="signin">
         <div className="logo">
           <div className="logo-img">
@@ -30,7 +76,7 @@ const SignIn = () => {
         <div className="signin-form">
           <h1 className="title">Sign In</h1>
           <div className="form">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form noValidate validated={validated}  onClick={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label className="label">
                   Email address or User name*
@@ -40,6 +86,9 @@ const SignIn = () => {
                   type="email"
                   placeholder="Enter email"
                   className="input"
+                  name="login_input"
+                  onChange={handleChange}
+                  value={user.login_input}
                 />
                 <Form.Control.Feedback type="invalid">
                   EmaiL Not vaild
@@ -53,6 +102,9 @@ const SignIn = () => {
                   type="password"
                   placeholder="Password"
                   className="input"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
                   {" "}
@@ -73,7 +125,12 @@ const SignIn = () => {
                   <span className="forgot">Forgot Password?</span>
                 </Link>
               </Form.Group>
-              <Button variant="primary" type="submit" className="button">
+              <Button
+                variant="primary"
+                type="button"
+                className="button"
+                onClick={handleSubmitClick}
+              >
                 Sign in
               </Button>
               <span className="line"> Or </span>
@@ -257,32 +314,30 @@ const Div = styled.div`
           left: 6%;
         }
         .form {
-          width:80%;
+          width: 80%;
           left: 5%;
         }
       }
     }
   }
 
-
   @media (min-width: 768px) and (max-width: 991.98px) {
-    .signin{
+    .signin {
       .signin-form {
         .title {
           top: 5%;
-          left:5%;
+          left: 5%;
         }
         .form {
-          width:80%;
-          left:5%;
-          top:11%;
-          .line{
-            margin:0px;
+          width: 80%;
+          left: 5%;
+          top: 11%;
+          .line {
+            margin: 0px;
           }
         }
       }
     }
-   
   }
 `;
 
