@@ -1,12 +1,38 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CustomsAlert } from "../components";
 import CustomModal from "../components/CustomModal";
 import logo from "../img/8.svg";
 
 const Verification = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
+  const [code,setCode] = useState('')
+  const [error,setError] = useState('')
+  const [message,setMessge] = useState('')
+  // let navigate = useNavigate()
+
+  const handleCode = (e) =>{
+    e.preventDefault()
+    setCode(e.target.value)
+  }
+
+  const handleVerify = async () => {
+   try {
+    const response = await axios.post('/api/user/verify' , code)
+    console.log(response);
+    if (response.data.status.code === "200") {
+      setError("");
+      setShow(!show)
+      setMessge(response.data.status.message)
+    }
+   } catch (error) {
+    setError(error.response.data.error)
+   }
+  }
   return (
     <Div>
       <div className="signup">
@@ -27,6 +53,7 @@ const Verification = () => {
                   type="email"
                   placeholder="* * * *"
                   className="input"
+                  onChange={handleCode}
                 />
                 <Form.Text className="text-muted">
                   *Please enter the verification code that was asked to the
@@ -38,14 +65,15 @@ const Verification = () => {
                 variant="primary"
                 type="button"
                 className="button"
-                onClick={() => setShow(!show)}
+                onClick={handleVerify}
+          
               >
                 Verify
               </Button>
               {show && (
                 <div className="container-modal">
                   <CustomModal
-                    text="A verification email had been sent to your email successfully"
+                    message={message}
                     path="/"
                   />
                 </div>
@@ -68,6 +96,10 @@ const Verification = () => {
                   />
                 </div>
               )}
+
+              {
+                error && <CustomsAlert error={error}/>
+              }
             </Form>
           </div>
         </div>
