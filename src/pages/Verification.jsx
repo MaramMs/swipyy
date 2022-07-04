@@ -14,21 +14,37 @@ const Verification = () => {
   const [error,setError] = useState('')
   const [message,setMessge] = useState('')
   // let navigate = useNavigate()
-
+  const bodyFormData = new FormData();
+  bodyFormData.append("code", code);
   const handleCode = (e) =>{
     e.preventDefault()
     setCode(e.target.value)
   }
 
   const handleVerify = async () => {
-    if (code) {
-      const payload = {
-      code
-      
-      };
-      console.log(payload);
+    console.log(code);
    try {
-    const response = await axios.post('/api/user/verify' , payload)
+    const response = await axios.post('/api/user/verify',{
+    data:{
+      code
+    }
+    },
+ {
+
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      'Content-Type': 'application/json'
+
+    },
+  }
+
+ 
+    
+    );
+
+
+
+    
     console.log(response);
     if (response.data.status.code === '200') {
       setError("");
@@ -40,7 +56,7 @@ const Verification = () => {
     setError(error.response.data.error)
    }
   }
-  }
+  
   // const handleResend = () =>{
 
   // }
@@ -65,6 +81,8 @@ const Verification = () => {
                   placeholder="* * * *"
                   className="input"
                   onChange={handleCode}
+                  name='code'
+                  value={code}
                 />
                 <Form.Text className="text-muted">
                   *Please enter the verification code that was asked to the
