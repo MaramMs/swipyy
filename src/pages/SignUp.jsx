@@ -18,6 +18,8 @@ const SignUp = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([]);
   const [isError, setIsError] = useState(false);
+  
+
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -53,6 +55,7 @@ const SignUp = () => {
         if (response.data.status.code === "200") {
           setData(response.data);
           setError("");
+          localStorage.setItem('token',response.data.data.access_token);
           navigate("/verification");
         }
       } catch (error) {
