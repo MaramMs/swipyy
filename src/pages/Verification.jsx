@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormData from "form-data";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CustomsAlert } from "../components";
 import CustomModal from "../components/CustomModal";
@@ -10,56 +10,39 @@ import logo from "../img/8.svg";
 const Verification = () => {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
-  const [code,setCode] = useState('')
-  const [error,setError] = useState('')
-  const [message,setMessge] = useState('')
-  // let navigate = useNavigate()
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const handleCode = (e) => {
+    e.preventDefault();
+    setCode(e.target.value);
+  };
   const bodyFormData = new FormData();
   bodyFormData.append("code", code);
-  const handleCode = (e) =>{
-    e.preventDefault()
-    setCode(e.target.value)
-  }
+
+  const config = {
+    method: "post",
+    url: "/api/user/verify",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    },
+    data: bodyFormData,
+  };
 
   const handleVerify = async () => {
-    console.log(code);
-   try {
-    const response = await axios.post('/api/user/verify',{
-    data:{
-      code
-    }
-    },
- {
+    axios(config)
+      .then(function (response) {
+        if (response.data.status.code === "200") {
+          setError("");
+          setMessage(response.data.status.message);
+          setShow(!show);
+        }
+      })
+      .catch(function (error) {
+        setError(error.response.data.error);
+      });
+  };
 
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      'Content-Type': 'application/json'
-
-    },
-  }
-
- 
-    
-    );
-
-
-
-    
-    console.log(response);
-    if (response.data.status.code === '200') {
-      setError("");
-      setShow(!show)
-      setMessge(response.data.status.message)
-    }
-   } catch (error) {
-    console.log(error);
-    setError(error.response.data.error)
-   }
-  }
-  
-  // const handleResend = () =>{
-
-  // }
   return (
     <Div>
       <div className="signup">
@@ -81,7 +64,7 @@ const Verification = () => {
                   placeholder="* * * *"
                   className="input"
                   onChange={handleCode}
-                  name='code'
+                  name="code"
                   value={code}
                 />
                 <Form.Text className="text-muted">
@@ -95,16 +78,12 @@ const Verification = () => {
                 type="button"
                 className="button"
                 onClick={handleVerify}
-          
               >
                 Verify
               </Button>
               {show && (
                 <div className="container-modal">
-                  <CustomModal
-                    message={message}
-                    path="/"
-                  />
+                  <CustomModal message={message} path="/" />
                 </div>
               )}
 
@@ -120,15 +99,12 @@ const Verification = () => {
                   <CustomModal
                     text="A code verification has been sent to your email"
                     index
-                    path='/'
-    
+                    path="/"
                   />
                 </div>
               )}
 
-              {
-                error && <CustomsAlert error={error}/>
-              }
+              {error && <CustomsAlert error={error} />}
             </Form>
           </div>
         </div>
@@ -256,38 +232,37 @@ const Div = styled.div`
           left: 6%;
         }
         .form {
-          width:80%;
+          width: 80%;
           left: 5%;
         }
       }
       .container-modal {
-        left:56%
+        left: 56%;
       }
     }
   }
 
   @media (min-width: 768px) and (max-width: 991.98px) {
-    .signup{
+    .signup {
       .signup-form {
         .title {
           top: 5%;
-          left:5%;
+          left: 5%;
         }
         .form {
-          width:80%;
-          left:5%;
-          top:11%;
-          .line{
-            margin:0px;
+          width: 80%;
+          left: 5%;
+          top: 11%;
+          .line {
+            margin: 0px;
           }
         }
       }
       .container-modal {
-        left:-6%;
-        top:93%;
+        left: -6%;
+        top: 93%;
       }
     }
-   
   }
 `;
 export default Verification;
