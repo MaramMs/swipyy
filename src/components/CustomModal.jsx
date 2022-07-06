@@ -4,7 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { BsPatchCheck } from "react-icons/bs";
 
-const CustomModal = ({text,path}) => {
+const CustomModal = ({message,path}) => {
   const navigate = useNavigate();
   return (
     <ModalContainer>
@@ -16,7 +16,7 @@ const CustomModal = ({text,path}) => {
         </Modal.Header>
 
         <Modal.Body>
-          <p>{text}</p>
+          <p>{message}</p>
         </Modal.Body>
 
         <Modal.Footer>
