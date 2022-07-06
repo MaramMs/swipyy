@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
 import axios from "axios";
+import FormData from 'form-data'
 
 const SignIn = (props) => {
   let navigate = useNavigate();
@@ -54,6 +55,10 @@ const SignIn = (props) => {
       }
     }
   };
+
+  const forgetPassword = async() =>{
+     const response = await axios.post('/api/auth/forget' ,  )
+  }
   return (
     <Div>
       <div className="signin">
