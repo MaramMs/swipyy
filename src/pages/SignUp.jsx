@@ -64,14 +64,14 @@ const SignUp = () => {
       }
     }
   };
-  // const responseGoogleSuccess = async () => {
-  //   try {
-  //     const response = await axios.post("/api/auth/login/social");
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const responseGoogleSuccess = async () => {
+    try {
+      const response = await axios.post("/api/auth/login/social");
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 //   const responseGoogleSuccess = (response) =>{
       
@@ -169,15 +169,15 @@ const SignUp = () => {
                 Sign up with Google
               </Button> */}
 
-              {/* <GoogleLogin
+              <GoogleLogin
                 // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 clientId={CLIENT_ID}
                 buttonText="Sign In with Google"
-                onSuccess={responseGoogleSuccess}
-                onFailure={responseGoogleError}
+                onClick={responseGoogleSuccess}
+                // onFailure={responseGoogleError}
                 isSignedIn={true}
                 cookiePolicy={"single_host_origin"}
-              /> */}
+              />
               <Button variant="primary" type="submit" className="btn-signup">
                 <img
                   className="icon"
