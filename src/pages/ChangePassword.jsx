@@ -1,12 +1,51 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import CustomModal from "../components/CustomModal";
 import logo from "../img/8.svg";
+import axios from "axios";
+import FormData from 'form-data';
+import { CustomsAlert } from "../components";
 
-const ChangePassword = () => {
+const ChangePassword = ({setUser,user})=>{
+  console.log(user.login_input)
   const [show, setShow] = useState(false);
+   const [password,setPassword] = useState('')
+   const [confirmPass , setConfirmPass] = useState('');
+   const [code,setCode] = useState('')
+   const [error,setError] = useState(false);
+   const [message,setMessage] = useState('')
+   let navigate  = useNavigate()
+
+  const bodyFormData = new FormData();
+  bodyFormData.append("code", code);
+  bodyFormData.append('password' ,password )
+  bodyFormData.append('password_confirmation' ,confirmPass )
+  bodyFormData.append('email',user.login_input)
+  const config = {
+    method: "post",
+    url: "/api/auth/reset/password",
+    headers: {
+      'content-type':'application/json'
+    },
+    data: bodyFormData,
+  };
+  const handleChangePassword = async () => {
+    axios(config)
+      .then(function (response) {
+        if (response.data.status.code === "200") {
+          navigate('/signin')
+          setError("");
+          setMessage(response.data.status.message);
+          setShow(!show);
+        }
+      })
+      .catch(function (error) {
+        setError(error.response.data.error);
+      });
+  };
+    
   return (
     <Div>
       <div className="signup">
@@ -27,6 +66,7 @@ const ChangePassword = () => {
                   type="password"
                   placeholder="type the new password here.."
                   className="input"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -35,6 +75,16 @@ const ChangePassword = () => {
                   type="password"
                   placeholder="type the new password here.."
                   className="input"
+                  onChange={(e) => setConfirmPass(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label className="label">Code *</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="type the new password here.."
+                  className="input"
+                  onChange={(e) => setCode(e.target.value)}
                 />
               </Form.Group>
 
@@ -42,7 +92,7 @@ const ChangePassword = () => {
                 variant="primary"
                 type="button"
                 className="button"
-                onClick={() => setShow(!show)}
+                onClick={handleChangePassword}
               >
                 Update Password
               </Button>
@@ -51,6 +101,9 @@ const ChangePassword = () => {
                  <CustomModal text='A password has been reset successfully' path='/signin' />
               </div>
               }
+
+              
+        {error && <CustomsAlert error={error} />}
             </Form>
           </div>
         </div>

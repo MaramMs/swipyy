@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
@@ -15,7 +15,7 @@ const SignUp = () => {
   });
   const [validated, setValidated] = useState(false);
   let navigate = useNavigate();
-  const CLIENT_ID = '1003395621198-a1iipqtnnugl8lcf395j2s1guokm57s8.apps.googleusercontent.com';
+
 
   const [data, setData] = useState([]);
   const [error, setError] = useState([]);
@@ -56,7 +56,7 @@ const SignUp = () => {
           setData(response.data);
           setError("");
           localStorage.setItem('access_token', response.data.data.access_token);
-          navigate("/verification");
+          navigate("/verification?q='signup'");
         }
       } catch (error) {
         setIsError(true);
@@ -64,23 +64,8 @@ const SignUp = () => {
       }
     }
   };
-  const responseGoogleSuccess = async () => {
-    try {
-      const response = await axios.post("/api/auth/login/social");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-//   const responseGoogleSuccess = (response) =>{
-      
-//         console.log(response);
-     
-// }
-// const responseGoogleError = (result) =>{
-//   console.log(result);
-// }
+
   return (
     <Div>
       <div className="signup">
@@ -164,20 +149,10 @@ const SignUp = () => {
               </Button>
               {isError && <CustomsAlert error={error} />}
               <span className="line"> Or </span>
-              {/* <Button variant="primary" type="submit" className="btn-signup">
+              <Button variant="primary" type="submit" className="btn-signup">
                 <FcGoogle className="icon" />
                 Sign up with Google
-              </Button> */}
-
-              <GoogleLogin
-                // clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                clientId={CLIENT_ID}
-                buttonText="Sign In with Google"
-                onClick={responseGoogleSuccess}
-                // onFailure={responseGoogleError}
-                isSignedIn={true}
-                cookiePolicy={"single_host_origin"}
-              />
+              </Button>
               <Button variant="primary" type="submit" className="btn-signup">
                 <img
                   className="icon"

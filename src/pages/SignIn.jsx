@@ -5,30 +5,20 @@ import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../img/8.svg";
 import axios from "axios";
+import FormData from 'form-data'
+import { CustomsAlert } from "../components";
 
-const SignIn = (props) => {
+const SignIn = ({handleChange ,user ,setUser}) => {
   let navigate = useNavigate();
   const [validated, setValidated] = useState(false);
+ const [error,setError] = useState(false)
 
-  const [user, setUser] = useState({
-    login_input: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
   };
 
@@ -50,12 +40,34 @@ const SignIn = (props) => {
           navigate('/')
         }
       } catch (error) {
-        console.log(error);
+        setError(error.response.data.error);
       }
     }
   };
+  const bodyFormData = new FormData();
+  bodyFormData.append("email",user.login_input );
 
+  var config = {
+    method: 'post',
+    url: '/api/auth/forget',
+    data : bodyFormData
+  };
   
+  
+  
+  const forgetPassword = async() =>{
+    axios(config)
+    .then(function (response) {
+      console.log(response)
+      if(response.data.status.code === '200')
+      navigate("/verification?q='signin'");
+    })
+    .catch(function (error) {
+      setError(error.response.data.error);
+    });
+  }
+ 
+
   return (
     <Div>
       <div className="signin">
@@ -114,9 +126,13 @@ const SignIn = (props) => {
                   type="checkbox"
                   label="Remember me"
                 />
-                <Link to="/change-password">
-                  <span className="forgot">Forgot Password?</span>
-                </Link>
+                <Button 
+                 onClick={forgetPassword}
+                 className='forgot'
+                >
+                Forgrt Password
+                   
+                </Button>
               </Form.Group>
               <Button
                 variant="primary"
@@ -144,6 +160,8 @@ const SignIn = (props) => {
               <p className="not-member">
                 Not a member ?<Link to="/signup">Sign up</Link>
               </p>
+
+              {error && <CustomsAlert error={error} />}
             </Form>
           </div>
         </div>
@@ -216,6 +234,8 @@ const Div = styled.div`
           color: #163152;
           font-weight: bold;
           font-size: 14px;
+          background:none;
+          border:none;
         }
         .form-check-input:checked {
           background-color: #8055f0;
