@@ -6,19 +6,30 @@ import styled from "styled-components";
 import { CustomsAlert } from "../components";
 import CustomModal from "../components/CustomModal";
 import logo from "../img/8.svg";
+import {useLocation, useNavigate } from "react-router-dom";
 
-const Verification = () => {
+const Verification = ({user}) => {
+
+
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+
+  const location = useLocation();
+  let navigate = useNavigate();
+
+
   const handleCode = (e) => {
     e.preventDefault();
     setCode(e.target.value);
   };
+
+
   const bodyFormData = new FormData();
   bodyFormData.append("code", code);
+  bodyFormData.append('email',user.login_input)
 
   const config = {
     method: "post",
@@ -29,20 +40,40 @@ const Verification = () => {
     data: bodyFormData,
   };
 
-  const handleVerify = async () => {
-    axios(config)
-      .then(function (response) {
-        if (response.data.status.code === "200") {
-          setError("");
-          setMessage(response.data.status.message);
-          setShow(!show);
-        }
-      })
-      .catch(function (error) {
-        setError(error.response.data.error);
-      });
-  };
 
+  const configData ={
+    method: "post",
+    url: "/api/auth/check/code",
+    data: bodyFormData
+   }
+  
+  const handleVerify = async () => {
+      if(!location.search.includes('signin')) {
+        axios(config)
+        .then(function (response) {
+          if (response.data.status.code === "200") {
+            setError("");
+            setMessage(response.data.status.message);
+            setShow(!show);
+          }
+        })
+        .catch(function (error) {
+          setError(error.response.data.error);
+        });
+      } else {
+        axios(configData)
+        .then(function (response) {
+          console.log(response)
+          if(response.data.status.code === '200'){
+            navigate('/change-password')
+          }
+        })
+        .catch(function(error) {
+             setError(error.response.data.error);
+        })
+      }
+  
+  };
   return (
     <Div>
       <div className="signup">
